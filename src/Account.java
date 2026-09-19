@@ -25,6 +25,14 @@ public class Account {
         balance += amount;
     }
 
+    public void deposit(double amount, String description) {
+        if(amount <= 0) {
+            throw new IllegalArgumentException("Invalid amount");
+        }
+        balance += amount;
+        System.out.println("Deposited description: " + description);
+    }
+
     public void withdraw(double amount) {
         if(amount <= 0) {
             throw new IllegalArgumentException("Invalid amount");

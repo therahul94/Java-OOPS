@@ -21,4 +21,11 @@ public class Bank {
     public double getCustomerCount() {
         return customers.size();
     }
+
+    /*
+    * We have not created the getCustomerList getter function, Why? because of encapsulation.
+    * Question : How not creating getCustomerList getter function protecting the encapsulation principle.
+    * Answer : because if we create this function getCustomerList(), it will be used in the main, and in main
+    * we can do bankObj.getCustomerList().clear(), which will clear all the customers. which restrict the encapsulation principle.
+    */
 }

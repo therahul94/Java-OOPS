@@ -38,5 +38,78 @@ public class Main {
         bank.addCustomer(c4);
 
         System.out.println("Bank: " + bank.getBankName() + ", Customer count: " + bank.getCustomerCount());
+
+        SavingAccount sa1 = new SavingAccount("SA1001");
+        System.out.println("Saving Account no: " + sa1.getAccountNumber() + " Current balance: " + sa1.getBalance());
+        sa1.deposit(90000);
+        System.out.println("Saving Account no: " + sa1.getAccountNumber() + " After deposit balance: " + sa1.getBalance());
+        sa1.withdraw(7000);
+        System.out.println("Saving Account no: " + sa1.getAccountNumber() + " After withdraw balance: " + sa1.getBalance());
+
+        CurrentAccount ca1 = new CurrentAccount("CUR1001");
+        System.out.println("Current Account no: " + ca1.getAccountNumber() + " Current balance: " + ca1.getBalance());
+        ca1.deposit(1000000);
+        System.out.println("Current Account no: " + ca1.getAccountNumber() + " After deposit balance: " + ca1.getBalance());
+        ca1.withdraw(10000);
+        System.out.println("Current Account no: " + ca1.getAccountNumber() + " After withdraw balance: " + ca1.getBalance());
+
+        /*
+        * Polymorphism
+        * Question: Why did we create child classes if we can already create the Account?
+        * Answer: Create a child object using a parent reference.
+        * Account account1 = new SavingAccount(...)
+             ↑                ↑
+           reference type     actual object
+        * The reference says:
+        "I am treating this object as an Account."
+
+        The actual object is:
+        SavingAccount
+
+        This is called upcasting.
+        */
+
+        Account account1 = new SavingAccount("SA9001");
+        Account account2 = new CurrentAccount("CUR9002");
+
+        account1.deposit(200000);
+        account2.deposit(300000);
+        /*Method Overloading: The parameter list must be different.*/
+        account1.deposit(240000, "Salary");
+
+        System.out.println("Account no.: " + account1.getAccountNumber() + " Balance: " + account1.getBalance());
+        System.out.println("Account no.: " + account2.getAccountNumber() + " Balance: " + account2.getBalance());
+
+        account1.withdraw(10000);
+        account2.withdraw(5000);
+
+        System.out.println("Account No.: " + account1.getAccountNumber() + " Balance: " + account1.getBalance());
+        System.out.println("Account No.: " + account2.getAccountNumber() + " Balance: " + account2.getBalance());
+
+        /*
+        * Why is this useful?
+        * Suppose we do: account1.withdraw(100);
+        * Java looks at the actual object.
+        * if account1 contains a savingAccount Object:
+            Account reference
+                   ↓
+            SavingAccount object
+                   ↓
+            SavingAccount.withdraw()
+
+         * If account2 contains a CurrentAccount object:
+            Account reference
+                   ↓
+            CurrentAccount object
+                   ↓
+            CurrentAccount.withdraw()
+
+          * This is runtime polymorphism.
+          * The same method call:account.withdraw(100);can execute different implementations depending on the actual object.
+        */
+
+
+
+
     }
 }
